@@ -43,11 +43,17 @@ public class ShoppingController {
 		return "menu";
 	}
 
+	@RequestMapping(value = "/backmenu", method = { GET, POST })
+	public String backMenu(LoginForm form, BindingResult result) {
+		// jspのファイル名
+		return "menu";
+	}
+
 	@RequestMapping(value = "/list", method = { GET, POST })
-	public String toList(HttpServletRequest request,Model model) {
+	public String toList(HttpServletRequest request, Model model) {
 
 		List<ItemEntity> list = getItemList();
-		model.addAttribute("itemList", list);
+		request.setAttribute("itemList", list);
 
 		DetailForm form = new DetailForm();
 		model.addAttribute(form);
@@ -57,15 +63,28 @@ public class ShoppingController {
 	}
 
 	@RequestMapping(value = "/detail", method = { GET, POST })
-	public String toDetail(DetailForm detailform, HttpServletRequest request, Model model) {
+	public String toDetail(DetailForm detailForm, HttpServletRequest request, Model model) {
 
-		request.setAttribute("dispItem", getItemFromId(detailform.getItemId()));
+		request.setAttribute("dispItem", getItemFromId(detailForm.getItemId()));
 
 		PurchaseForm purchaseForm = new PurchaseForm();
 		model.addAttribute(purchaseForm);
 
 		// jspのファイル名
 		return "detail";
+	}
+
+	@RequestMapping(value = "/confirm", method = { GET, POST })
+	public String toConFirm(@Valid PurchaseForm form, BindingResult result, HttpServletRequest request) {
+
+		if (result.hasErrors()) {
+			return "detail";
+		}
+
+		request.setAttribute("dispItem", getItemFromId(form.getItemId()));
+
+		// jspのファイル名
+		return "confirm";
 	}
 
 	private List<ItemEntity> getItemList() {

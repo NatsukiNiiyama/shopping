@@ -23,7 +23,7 @@
 
 	<br>
 	<div>
-		<a href="<c:url value='/menu' />">メニュー</a>
+		<a href="<c:url value='/backmenu' />">メニュー</a>
 	</div>
 	<div>
 		<a href="<c:url value='/menu' />">購入履歴</a>

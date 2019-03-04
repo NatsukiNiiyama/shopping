@@ -2,16 +2,13 @@ package jp.co.isol.form;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Max;
 
 public class PurchaseForm implements Serializable {
 
-	@NotEmpty
 	int itemId;
 
-	@NotEmpty
-	@Size(max = 3)
+	@Max(value = 999)
 	int count;
 
 	public int getItemId() {

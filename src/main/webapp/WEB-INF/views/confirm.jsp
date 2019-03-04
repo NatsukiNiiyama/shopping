@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <body>
-	<h2>商品詳細画面</h2>
+	<h2>購入確認画面</h2>
 
-	<form:form modelAttribute="purchaseForm" action="/shoping/confirm">
+	<form:form modelAttribute="purchaseForm" action="/shoping/menu">
 		<table>
 			<form:input type="hidden" path="itemId" value="${dispItem.id}" />
 			<tr>
